@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+//Swap Function
+void swapNumbers(int &a,int &b ){
+    a=a+b;
+    b=a-b;
+    a=a-b;
+}
+int main() {
+    //Declaration and Initialization of Integers.
+    int a=2,b=3;
+    //Print Numbers before Swap.
+    cout<<"Before Swap:\na="<<a<<"\nb="<<b<<endl;
+    //Swap function called.
+    swapNumbers(a,b);
+    //Print Numbers after Swap. 
+    cout<<"After Swap:\na="<<a<<"\nb="<<b<<endl;
+	return 0;
+}
