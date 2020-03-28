@@ -4,30 +4,20 @@
 *_____National Institute of Technology Agartala___*
 *_____Mail: vps711@outlook.com____________________*
 ***************************************************
-Question: https://www.geeksforgeeks.org/find-next-greater-number-set-digits/
-Find next greater number with same set of digits
-Given a number n, find the smallest number that has same set of digits as n 
-and is greater than n. If n is the greatest possible number with its set of 
-digits, then print “not possible”.
-Examples:
-For simplicity of implementation, we have considered input number as a string.
+Question: https://leetcode.com/problems/next-greater-element-iii/
+556. Next Greater Element III
+Given a positive 32-bit integer n, you need to find the smallest 32-bit integer 
+which has exactly the same digits existing in the integer n and is greater in value than n.
+ If no such positive 32-bit integer exists, you need to return -1.
 
-Input:  n = "218765"
-Output: "251678"
-
-Input:  n = "1234"
-Output: "1243"
-
-Input: n = "4321"
-Output: "Not Possible"
-
-Input: n = "534976"
-Output: "536479"
+ Solution Explanation:
+ Scan from last digit and find 1st small digit to its right digit.
 **************************************************/
 #include<bits/stdc++.h>
 using namespace std;
-int nextGreator(long int n){
-	std::vector<int> v;
+int nextGreator( int n){
+	 try{
+            std::vector<int> v;
 	int maxInt=n%10;
 	n=n/10;
 	
@@ -39,7 +29,7 @@ int nextGreator(long int n){
 		n=n/10;
 	}
 	v.push_back(maxInt);
-	cout<<"n:"<<n<<endl;
+	//printf("%d\n",INT_MAX);
 	if(n!=0){
 		int s;
 		for(int i=0,j=v.size(); i<j;i++){
@@ -47,6 +37,8 @@ int nextGreator(long int n){
 				s=n%10;
 				n/=10;
 				n=n*10+v[i];
+				if(n%10!=v[i])
+					return -1;
 				v[i]=s;
 				break;
 			}
@@ -54,14 +46,22 @@ int nextGreator(long int n){
 
 		for(int i=0,j =v.size(); i<j;i++){
 			n=n*10+v[i];
+			if(n%10!=v[i])
+			return -1;
 		}
 
 		return n;
 	}
+        }
+        catch(exception e){
+            return -1;
+        }
+        
 	return -1;
+ 
 }
 int main(){
-	long int n;
+	int n;
 	cin>>n;
 	cout<<nextGreator(n)<<endl;
 	return 0;
