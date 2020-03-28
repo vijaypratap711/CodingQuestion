@@ -26,7 +26,43 @@ Output: "536479"
 **************************************************/
 #include<bits/stdc++.h>
 using namespace std;
-int main(){
+int nextGreator(long int n){
+	std::vector<int> v;
+	int maxInt=n%10;
+	n=n/10;
+	
+	while(n!=0 & n%10 >= maxInt ){
 
+		v.push_back(maxInt);
+		maxInt=n%10;
+		
+		n=n/10;
+	}
+	v.push_back(maxInt);
+	cout<<"n:"<<n<<endl;
+	if(n!=0){
+		int s;
+		for(int i=0,j=v.size(); i<j;i++){
+			if(v[i]> (n%10) ){
+				s=n%10;
+				n/=10;
+				n=n*10+v[i];
+				v[i]=s;
+				break;
+			}
+		}
+
+		for(int i=0,j =v.size(); i<j;i++){
+			n=n*10+v[i];
+		}
+
+		return n;
+	}
+	return -1;
+}
+int main(){
+	long int n;
+	cin>>n;
+	cout<<nextGreator(n)<<endl;
 	return 0;
 }
